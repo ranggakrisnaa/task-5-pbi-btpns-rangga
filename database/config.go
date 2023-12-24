@@ -3,6 +3,7 @@ package db
 import (
 	"log"
 
+	"github.com/ranggakrisnaa/task-5-pbi-btpns-rangga/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,6 +14,7 @@ func Init() *gorm.DB {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	db.AutoMigrate(&models.User{}, &models.Photo{})
 
 	return db
 }
