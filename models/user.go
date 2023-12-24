@@ -43,6 +43,6 @@ func (user *User) BeforeUpdate(tx *gorm.DB) (err error) {
 	return nil
 }
 
-func (user *User) ComparePassword(password string) bool {
+func (user *User) ComparePassword(password string) error {
 	return helpers.CheckPasswordHash(user.Password, password)
 }

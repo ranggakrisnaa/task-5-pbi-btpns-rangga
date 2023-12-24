@@ -2,10 +2,12 @@ package controllers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/ranggakrisnaa/task-5-pbi-btpns-rangga/app"
 	db "github.com/ranggakrisnaa/task-5-pbi-btpns-rangga/database"
+	"github.com/ranggakrisnaa/task-5-pbi-btpns-rangga/helpers"
 	"github.com/ranggakrisnaa/task-5-pbi-btpns-rangga/models"
 	"gorm.io/gorm"
 )
@@ -41,8 +43,40 @@ func Login(ctx *gin.Context) {
 
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+
 		return
 	}
+
+	db := db.Init()
+	var user models.User
+	if err := db.Where("email = ?", input.Email).First(&user).Error; err != nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Invalid credentials",
+			"success": false,
+		})
+		return
+	}
+
+	if err := user.ComparePassword(input.Password); err != nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Invalid credentials",
+			"success": false,
+		})
+		return
+	}
+
+	userIDString := strconv.Itoa(int(user.ID))
+	token, err := helpers.GenerateToken(userIDString)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"token":   token,
+		"success": true,
+		"message": "Successfully log in",
+	})
 }
 
 func Register(ctx *gin.Context) {

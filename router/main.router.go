@@ -11,6 +11,7 @@ func Router() *gin.Engine {
 	app := router.Group("/api/v1/auth")
 	{
 		app.POST("/register", controllers.Register)
+		app.POST("/logiin", controllers.Login)
 	}
 
 	return router
