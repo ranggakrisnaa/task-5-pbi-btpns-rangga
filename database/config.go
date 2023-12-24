@@ -15,8 +15,8 @@ func Init() *gorm.DB {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	dsn := os.Getenv("DB_URL")
 
+	dsn := os.Getenv("DB_URL")
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalln(err)
