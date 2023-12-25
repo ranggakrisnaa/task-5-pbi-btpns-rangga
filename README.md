@@ -14,3 +14,11 @@
     "password": "danuputra"
  }
  ```
+* Response Body :
+     * 201 Created
+       ```
+       {
+         "message": "User registered successfully",
+         "success": true
+       }
+       ```
