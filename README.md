@@ -37,14 +37,50 @@
      * 200 OK
        ```
        {
-          "message": "User Login successfully",
-          "success": true,
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDM1ODgxOTgsImp0aSI6IjIifQ.2D7F-m-U53EYoaNpn_7T4xxHgxtv5lxVk_8PjWqRVpI"
+         "message": "User Login successfully",
+         "success": true,
+         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDM1ODgxOTgsImp0aSI6IjIifQ.2D7F-m-U53EYoaNpn_7T4xxHgxtv5lxVk_8PjWqRVpI"
        }
        ```
 
 ## User Endpoint
 
 > Update User
-##
 > PUT http://localhost:3001/api/v1/user/:id
+
+* Updates User information.
+* Requires authentication via JWT Token.
+* Request Body :
+  ```
+  {
+    "username": "gg",
+    "email": "gg",
+    "password": "rangga123"
+  }
+  ```
+* Response Body :
+    * 200 OK
+      ```
+      {
+        "message": "User Updated Successfully",
+        "success": true
+      }
+      ```
+
+> Delete User
+> DELETE http://localhost:3001/api/v1/user/:id
+
+* Delete a User
+* Requires authentication via JWT Token.
+* Request Body :
+  ```
+  {null}
+  ```
+* Response Body :
+   * 200 OK
+     ```
+      {
+        "message": "User Deleted Successfully",
+        "success": true
+      }
+      ```
