@@ -18,8 +18,12 @@ func Router() *gin.Engine {
 	appMain := router.Group("/api/v1")
 	{
 		appMain.Use(middlewares.AuthMiddleware())
-		appMain.PUT("/user/:id", controllers.UpdateUser)
-		appMain.DELETE("/user/:id", controllers.DeleteUser)
+		appMain.PUT("/users/:id", controllers.UpdateUser)
+		appMain.DELETE("/users/:id", controllers.DeleteUser)
+		appMain.POST("/photos", controllers.UploadPhotoProfile)
+		appMain.GET("/photos", controllers.GetPhotoProfile)
+		appMain.PUT("/photos/:id", controllers.UpdatePhotoProfile)
+		appMain.DELETE("/photos/:id", controllers.DeletePhotoProfile)
 	}
 
 	return router
