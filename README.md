@@ -33,7 +33,7 @@
     "password": "danuputra"
   }
   ```
-  * Response Body :
+* Response Body :
      * 200 OK
        ```
        {
