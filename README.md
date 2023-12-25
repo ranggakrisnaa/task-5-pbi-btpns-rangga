@@ -7,9 +7,10 @@
 
 * Create New User
 * Request Body
-`{
+```
+{
     "username": "danuputra",
     "email": "danuputra",
     "password": "danuputra"
 }
-`
+```
