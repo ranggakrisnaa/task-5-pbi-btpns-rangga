@@ -1,4 +1,4 @@
-# Photos API
+# User-Profile API
 
 ## Auth Endpoint
 
