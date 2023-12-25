@@ -22,7 +22,7 @@
          "success": true
        }
        ```
-> Login User
+> Login User -
 > POST http://localhost:3001/api/v1/auth/login
 
 * Authenticates a user.
@@ -45,7 +45,7 @@
 
 ## User Endpoint
 
-> Update User
+> Update User -
 > PUT http://localhost:3001/api/v1/user/:id
 
 * Updates User information.
@@ -67,7 +67,7 @@
       }
       ```
 
-> Delete User
+> Delete User -
 > DELETE http://localhost:3001/api/v1/user/:id
 
 * Delete a User
