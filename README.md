@@ -42,3 +42,5 @@
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDM1ODgxOTgsImp0aSI6IjIifQ.2D7F-m-U53EYoaNpn_7T4xxHgxtv5lxVk_8PjWqRVpI"
        }
        ```
+
+## User Endpoint
