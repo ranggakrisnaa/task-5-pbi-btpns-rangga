@@ -74,7 +74,7 @@
 * Requires authentication via JWT Token.
 * Request Body :
   ```
-  {null}
+  { null }
   ```
 * Response Body :
    * 200 OK
