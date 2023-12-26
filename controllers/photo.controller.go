@@ -125,12 +125,38 @@ func UpdatePhotoProfile(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"success": true,
-		"message": "Photo updated successfully",
+		"message": "Photo Updated Successfully",
 		"data":    photo,
 	})
 
 }
 
 func DeletePhotoProfile(ctx *gin.Context) {
+	photoID := ctx.Param("id")
+	userID, _ := ctx.Get("userID")
 
+	var photo models.Photo
+
+	db := db.Init()
+
+	if err := db.Where("id = ?", photoID).Where("user_id = ?", userID).First(&photo).Error; err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"success": false,
+			"message": "Photo not found",
+		})
+		return
+	}
+
+	if err := db.Where("id = ?", photoID).Where("user_id = ?", userID).Unscoped().Delete(&photo).Error; err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"success": false,
+			"message": "Failed to delete photo",
+		})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"message": "Photo Deleted Successfully",
+	})
 }
